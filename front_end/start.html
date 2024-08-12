@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS E-Learning</title>
+    <style>
+        #data_container {
+            color: #0e2f77;
+            font-size: x-large;
+        }
+        button {
+            background: rgb(195, 195, 195);
+        }
+    </style>
+</head>
+<body>
+<h1>JS E-Learning</h1>
+<button>Show all users</button>
+<button>Register</button>
+<button>Delete all users</button>
+<div id="register_user_data"></div>
+<div id="data_container"></div>
+<script>
+    let pressed =false;
+    let is_open = false;
+    document.querySelectorAll("button")[0].addEventListener("click", async () => {
+        if (!pressed) {
+            const users = await (await fetch("http://localhost:9002/users")).json();
+            let data_container = document.querySelector("#data_container");
+            for (let user of users) {
+                let user_instance = document.createElement("p")
+                user_instance.innerHTML = [user.first_name, user.last_name, user.email];
+                data_container.appendChild(user_instance);
+            }
+            pressed = true;
+        }
+    })
+
+
+    document.querySelectorAll("button")[1].addEventListener("click", async () => {
+        if (!is_open) {
+            let user_info = document.querySelector('#register_user_data');
+            const users = await (await fetch("http://localhost:9002/users")).json();
+            let form = document.createElement('form');
+            form.action = "http://localhost:9002/users/register";
+            form.method = "POST";
+
+            for (let field of ['first_name', 'last_name', 'email']) {
+                let input_field = document.createElement('input');
+                input_field.type = 'text';
+                input_field.placeholder = field;
+                input_field.name = field;
+                form.appendChild(input_field);
+            }
+            is_open = true;
+            let confirm_btn = document.createElement('button');
+            confirm_btn.textContent = "Confirm registration";
+            confirm_btn.type = "submit";
+            form.appendChild(confirm_btn);
+            user_info.appendChild(form);
+
+            await confirm_btn.addEventListener("click", async () => {
+                alert('User registered successfully!');
+            })
+        }
+
+    })
+
+    document.querySelectorAll('button')[2].addEventListener("click", async () => {
+        await fetch("http://localhost:9002/users/all", {
+            method: "DELETE"
+        })
+        alert('Users deleted successfully!')
+    })
+
+            // let registered_user = document.querySelector('#register_user_data')
+        //     registered_user.innerHTML = "Registration successful!"
+
+
+</script>
+</body>
+</html>

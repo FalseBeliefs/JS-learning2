@@ -1,9 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
 
+
 let app = express.Router()
 app.use(express.json())
 export default app;
+
 
 const prisma = new PrismaClient()
 
@@ -16,15 +18,20 @@ app.get('/', async(req, res) =>{
 
 app.post('/register', async(req, res) => {
     let {first_name, last_name, email} = req.body
-
     const createdUser = await prisma.user.create({
         data: {
-            first_name: first_name,
-            last_name: last_name,
-            email: email
+            first_name,
+            last_name,
+            email
         }
     })
-    res.send(createdUser)
+    res.redirect('/start.html')
+})
+
+
+app.delete('/all', async(req, res) => {
+    await prisma.user.deleteMany({})
+    res.send("GOOD!")
 })
 
 

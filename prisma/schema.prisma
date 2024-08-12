@@ -23,7 +23,7 @@ model Course {
   title       String
   description String
   content     String?
-  owner       User      @relation(fields: [authorId], references: [user_id])
+  owner       User      @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
   authorId    Int
   sections    Section[]
 }
@@ -33,6 +33,6 @@ model Section {
   title       String
   description String
   content     String?
-  course      Course  @relation(fields: [courseId], references: [course_id])
+  course      Course  @relation(fields: [courseId], references: [course_id], onDelete: Cascade)
   courseId    Int
 }
