@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import express from 'express'
 
 let app = express.Router()
-app.use(express.json())
+
 export default app;
 
 const prisma = new PrismaClient()

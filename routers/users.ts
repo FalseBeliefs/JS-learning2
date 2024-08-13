@@ -3,7 +3,7 @@ import express from 'express'
 
 
 let app = express.Router()
-app.use(express.json())
+
 export default app;
 
 
@@ -18,7 +18,7 @@ app.get('/', async(req, res) =>{
 
 app.post('/register', async(req, res) => {
     let {first_name, last_name, email} = req.body
-    const createdUser = await prisma.user.create({
+    await prisma.user.create({
         data: {
             first_name,
             last_name,
