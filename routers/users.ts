@@ -4,6 +4,7 @@ import express from 'express'
 
 let app = express.Router()
 
+// How do we connect this export to the user router is main.ts?
 export default app;
 
 
@@ -18,6 +19,8 @@ app.get('/', async(req, res) =>{
 
 app.post('/register', async(req, res) => {
     let {first_name, last_name, email} = req.body
+    console.log("Went here")
+    // Implement try, catch block for failed unique email
     await prisma.user.create({
         data: {
             first_name,
@@ -25,7 +28,9 @@ app.post('/register', async(req, res) => {
             email
         }
     })
-    res.redirect('/start.html')
+    res.status(204).send();
+    // setTimeout( () => {res.redirect('/start.html')} , 30000 )
+    // res.redirect('/start.html')
 })
 
 

@@ -1,0 +1,61 @@
+#register_user_data {
+    text-align: center;
+}
+
+#users_data {
+    height: 800px;
+    width: 400px;
+    margin-left: 105px
+}
+
+
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*#buttons {*/
+/*    {*/
+/*  margin: 0;*/
+/*  position: absolute;*/
+/*  left: 50%;*/
+/*  -ms-transform: translate(-50%, -50%);*/
+/*  transform: translate(-50%, -50%);*/
+/*}*/
+
+
+button {
+    background: rgb(20, 142, 223);
+    margin: 10px;
+    border: #e6e2b2 solid 2px;
+    width: 130px;
+}
+
+  /*:focus, :visited, :disabled, :active*/
+button:hover {
+    background: rgba(0, 255, 0, 0.49) !important;
+}
+
+#delete_users_btn {
+    background: rgba(255, 68, 0, 0.7);
+}
+
+p {
+    color: #807a00;
+    font-family: helvetica;
+}
+
+h1 {
+    color: aliceblue;
+    text-align: center;
+    height: 40px;
+    border: 6px;
+    border-style: groove inset;
+}
+
+body{
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(-90deg, #35577D, #141E30);
+  margin: 20px;
+}
