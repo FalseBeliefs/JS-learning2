@@ -29,8 +29,6 @@ app.post('/register', async(req, res) => {
         }
     })
     res.status(204).send();
-    // setTimeout( () => {res.redirect('/start.html')} , 30000 )
-    // res.redirect('/start.html')
 })
 
 
